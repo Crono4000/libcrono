@@ -17,7 +17,8 @@ CFILES = power.c \
 		get_free_split.c \
 		copy_file.c \
 		putnbr_on_str.c \
-		ltoa.c
+		ltoa.c \
+		print_split.c
 
 OFILES = $(CFILES:.c=.o)
 
@@ -40,7 +41,19 @@ re: fclean all
 install_header:
 	sudo cp $(HEADER) "/usr/include/$(HEADER)"
 
+uninstall_header:
+	sudo rm "/usr/include/$(HEADER)"
+
 install_debian: all install_header
 	sudo cp $(NAME) "/usr/lib/x86_64-linux-gnu/$(NAME)"
+
+uninstall_debian: uninstall_header
+	sudo rm "/usr/lib/x86_64-linux-gnu/$(NAME)"
+
+test: all
+	cc test.c -o test -lcrono -L.
+
+install_test: all install_debian
+	cc test.c -o test -lcrono
 
 .PHONY: all clean fclean re

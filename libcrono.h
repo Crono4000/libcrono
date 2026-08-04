@@ -7,6 +7,7 @@
 # include <unistd.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 # define CPY_BUFFER 50
 
@@ -16,6 +17,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void	print_split(char **ptr);
 int		count_split(const char *str, char to_find);
 void	free_split(char **ptr);
 char	**split(const char *str, char c);

@@ -2,6 +2,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libcrono.a
+HEADER = libcrono.h
 
 CFILES = power.c \
 		strjoin.c \
@@ -36,7 +37,10 @@ fclean: clean
 
 re: fclean all
 
-install_debian: all
+install_header:
+	sudo cp $(HEADER) "/usr/include/$(HEADER)"
+
+install_debian: all install_header
 	sudo cp $(NAME) "/usr/lib/x86_64-linux-gnu/$(NAME)"
 
 .PHONY: all clean fclean re

@@ -36,4 +36,7 @@ fclean: clean
 
 re: fclean all
 
+install_debian: all
+	sudo cp $(NAME) "/usr/lib/x86_64-linux-gnu/$(NAME)"
+
 .PHONY: all clean fclean re

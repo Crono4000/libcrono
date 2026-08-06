@@ -18,7 +18,9 @@ CFILES = power.c \
 		copy_file.c \
 		putnbr_on_str.c \
 		ltoa.c \
-		print_split.c
+		print_split.c \
+		next_token.c \
+		get_next_line.c
 
 OFILES = $(CFILES:.c=.o)
 
@@ -28,7 +30,7 @@ $(NAME): $(OFILES)
 	ar rcs $(NAME) $(OFILES)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -g -c $< -o $@
 
 clean:
 	rm -f $(OFILES)
@@ -51,9 +53,9 @@ uninstall_debian: uninstall_header
 	sudo rm "/usr/lib/x86_64-linux-gnu/$(NAME)"
 
 test: all
-	cc test.c -o test -lcrono -L.
+	cc test.c -g -o test -lcrono -L.
 
 install_test: all install_debian
-	cc test.c -o test -lcrono
+	cc test.c -g -o test -lcrono
 
 .PHONY: all clean fclean re

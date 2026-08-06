@@ -10,6 +10,7 @@
 # include <stdio.h>
 
 # define CPY_BUFFER 50
+# define BUFFER_SIZE 50
 
 typedef struct s_list
 {
@@ -17,6 +18,12 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void	trimbuffer(char *buffer, char *pattern);
+size_t	special_strlen(const char *str, char *pattern);
+char	*special_strjoin(char *s1, char *s2, char *pattern, int free_s1);
+char	*get_next_part(int fd, char *pattern);
+char	*get_next_line(int fd);
+char	*next_token(char *str, char *find);
 void	print_split(char **ptr);
 int		count_split(const char *str, char to_find);
 void	free_split(char **ptr);
